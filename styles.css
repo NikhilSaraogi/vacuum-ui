@@ -1,0 +1,505 @@
+
+@font-face {
+  font-family: 'CustomFont';  /* This is the name you'll use for the font */
+  src: url('fonts/adani.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+*{
+  box-sizing: border-box;
+}
+
+/* General body styling */
+body {
+  margin: 0;
+  font-family: 'CustomFont', sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 2px;
+}
+
+/* Header styling */
+header {
+  background-color: #add8e6; /* Light blue color */
+  color: #003366;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Top section of header */
+.top-header {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: flex-end; */
+  align-items: center;
+  width: 100%;
+  max-width: 1600px;
+}
+
+/* Logo and heading container */
+.logo-heading {
+  display: flex;
+  align-items: center;
+}
+
+/* Logo styling */
+.logo {
+  height: 55px;
+  margin-right: 25px; /* Space between logo and heading */
+}
+
+/* Heading styling */
+.heading {
+  font-size: 24px;
+  font-weight: bold;
+  color: #003366;
+}
+
+/* Container for time, location, and weather */
+.time-location-weather {
+  text-align: right;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  /* padding-right: 5px; */
+  /* gap: 2px; Space between time-location and weather */
+}
+
+/* Time and location container */
+.time-location {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 14px;
+}
+
+/* Weather info container */
+.weather-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 14px;
+  gap: 1px; 
+  color: #333;
+}
+
+/* Styling each weather info item */
+.weather-info div {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+/* Icon styling */
+.weather-info .icon {
+  font-size: 16px;
+  color: #007bff; /* Blue for icons */
+}
+
+/* Weather and time text styling */
+.weather-info span,
+.time-location span {
+  font-weight: bold;
+  font-family: 'CustomFont', sans-serif;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .time-location-weather {
+    font-size: 14px;
+    gap: 4px;
+  }
+}
+
+/* Icon styling */
+.icon {
+  margin-right: 0px;
+}
+
+/* Footer styling */
+footer {
+  background-color: #add8e6;
+  color: #003366;
+  text-align: center;
+  padding: 10px;
+  margin-top: auto;
+}
+
+/* Main container for the chart */
+#chart-container2 {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  width: 100%;
+}
+
+/* Chart box styling */
+#chart-box {
+  width: 80%;
+  max-width: 800px;
+  height: 500px;
+  border: 2px solid #003366; /* Dark blue border */
+  border-radius: 8px;
+  background-color: #f9f9f9; /* Light background */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a shadow */
+}
+
+#chart-container {
+  width: 100%;
+  display: flex;
+  justify-content: left;
+  padding-bottom: 2px;
+  align-items: center;
+}
+
+#main-container{
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  height: 100%;
+}
+
+.small-chart {
+  width: 100%;
+  height: 200px;
+  border: 1px solid #003366;
+  border-radius: 2px;
+  margin: 0 4px 4px 4px;
+  overflow: hidden; 
+  background-color: #f0f8ff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Large chart container styling */
+.large-chart {
+  width: 100%;
+  display: flex;
+  border-radius: 5px;
+  margin: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+#large-line-chart {
+  width: 100%;
+  height: 365px; /* Height for the large chart */
+}
+
+/* General styling for the container */
+.color-boxes-container {
+  display: flex;
+  justify-content: space-around; /* Space out the boxes */
+  margin-top: 10px;
+  gap: 8px;
+}
+
+/* Styling for the color box container */
+.color-box {
+  width: 30%;
+  height: 60px; /* Increased height to accommodate the heading */
+  border: 2px solid #003366;
+  border-radius: 8px;
+  position: relative;
+  background-color: #e0e0e0; /* Light gray background */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding-top: 10px; /* Space for the heading */
+  text-align: center;
+  overflow: hidden; 
+  transform: perspective(500px) rotateY(0deg); /* Tilt effect */
+  transition: transform 0.5s ease-in-out;
+  padding-top: 10px;
+}
+
+/* Add tilt effect on hover */
+.color-box:hover {
+  transform: perspective(500px) rotateY(10deg); /* Tilt when hovered */
+}
+
+/* Styling for the heading in each box */
+.color-box h3 {
+  font-size: 15px;
+  margin: 0;
+  color: #003366;
+  font-weight: bold;
+  z-index: 1;
+  position: absolute;
+  top: 10px; /* Adjust heading position */
+  left: 50%;
+  transform: translateX(-50%);
+  line-height:0.4;
+}
+/* Fill color inside the box */
+.fill {
+  height: 100%; /* Full height of the box */
+  width: 0%; /* Default width of 0% */
+  border-radius: 6px;
+  transition: width 0.5s ease-in-out; /* Smooth transition */
+  position: absolute; /* Absolute positioning within the parent box */
+  top: 0;
+  left: 0;
+  z-index: 0; /* Ensure the fill is behind the text */
+}
+
+/* Content inside the color box (numbers) */
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  color: #003366;
+  z-index: 1;
+}
+
+/* Color classes for different ranges */
+.fill.low { background-color: #ff4d4d; } /* Red for low */
+.fill.medium { background-color: #ffcc00; } /* Yellow for medium */
+.fill.high { background-color: #66cc66; } /* Green for high */
+
+
+.recommendations-container {
+  /* position: absolute; Makes it absolute on the screen */
+  /* top: 120px; /*Adjust the distance from the top of the screen */
+  /* right: 25px; Position it on the right side of the page */
+  /* width: 550px;  */
+  /* top: 120px; */
+  height: 100%;
+  width: 40%;
+  padding: 10px;
+  background-color: #add8e6; /* Light background color */
+  border: 1px solid #add8e6; /* Border for the box */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.scroll-box {
+  height: 450px; /* Fixed height for the box */
+  overflow-y: auto; /* Add vertical scrolling */
+  border: 1px solid #ccc; /* Optional: Add a border */
+  padding: 8px; /* Add padding inside the box */
+  background-color: #f9f9f9; /* Optional: Add a background color */
+  border-radius: 3px; /* Optional: Round the corners */
+}
+.recommendation-box {
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #fff; /* White background for each box */
+  border: 1px solid #ccc; /* Border around each box */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Add tilt effect on hover */
+.recommendation-box:hover {
+  /* transform: perspective(500px) rotateY(10deg) scale(1.05); /* Tilt and scale slightly */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6); /* Enhanced shadow on hover */
+}
+
+.recommendation-box p {
+  margin: 5px 0; /* Space between text */
+  font-size: 14px; /* Adjust text size */
+  color: #333; /* Dark text color */
+}
+
+
+.feedback-button {
+  position: absolute; /* Makes the button stay fixed at the bottom-right */
+  bottom: 42px; /* Distance from the bottom of the page */
+  right: 15px; /* Distance from the right of the page */
+  padding: 10px 20px; /* Button padding */
+  background-color: #add8e6; /* Button background color */
+  color: #003366; /* Text color */
+  font-size: 16px; /* Font size */
+  text-decoration: none; /* Remove underline from the link */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.feedback-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+#body-container{
+  display: flex;
+  margin-top: 50px;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 580px;
+}
+
+.report-button {
+  position: absolute; /* Makes the button stay fixed at the bottom-right */
+  bottom: 42px; /* Distance from the bottom of the page */
+  right: 10%; /* Distance from the right of the page */
+  padding: 10px 20px; /* Button padding */
+  background-color: #add8e6; /* Button background color */
+  color: #003366; /* Text color */
+  font-size: 16px; /* Font size */
+  text-decoration: none; /* Remove underline from the link */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.report-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Action Buttons Section */
+.action-buttons {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px; /* Adds consistent spacing between buttons */
+}
+
+.action-buttons button {
+  padding: 8px 15px; /* Slightly larger padding for better appearance */
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.action-buttons button:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+}
+
+.accept-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.accept-btn:hover {
+  background-color: #45a049;
+}
+
+.reject-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.reject-btn:hover {
+  background-color: #e53935;
+}
+
+.comment-btn {
+  background-color: #2196F3;
+  color: white;
+}
+
+.comment-btn:hover {
+  background-color: #1e88e5;
+}
+
+/* Comment Box Section */
+.comment-box {
+  margin-top: 10px;
+  background-color: #f9f9f9; /* Light background for contrast */
+  border: 1px solid #ddd; /* Subtle border for definition */
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adds a soft shadow */
+}
+
+.comment-box textarea {
+  width: 100%;
+  height: 60px; /* Increased height for better usability */
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: none; /* Disables resizing for consistency */
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+}
+
+.comment-box textarea:focus {
+  outline: none;
+  border-color: #2196F3; /* Highlight border on focus */
+  box-shadow: 0 0 4px rgba(33, 150, 243, 0.6); /* Subtle glow on focus */
+}
+
+.comment-box button {
+  padding: 7px 12px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.comment-box button:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+.confirmation-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.popup-content h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.popup-content p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.ok-btn {
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.ok-btn:hover {
+  background-color: #45a049;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Condenser Optimization</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.plot.ly/plotly-2.24.1.min.js"></script> <!-- Include Plotly.js -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+</head>
+<body>
+  <header>
+    <div class="top-header">
+      <div>
+        <div class="logo-heading">
+          <img src="images/logo.png" alt="Adani Power Logo" class="logo">
+          <div class="heading">Condenser Optimization - UNIT#3</div>
+          <!-- <div class="heading">Optimus</div> -->
+        </div>
+        <div class="time-location-weather"></div>
+      </div>
+      <div style="display: flex; justify-content: space-between; gap: 30px;">
+        <div class="weather-info">
+          <div>
+            <span class="icon">☀️</span>
+            <span id="weather">Loading weather...</span>
+          </div>
+          <div>
+            <span class="icon">💧</span>
+            <span id="humidity">Loading humidity...</span>
+          </div>
+        </div>
+        <div class="time-location">
+          <div>
+            <span class="icon">📍</span>
+            <span id="location"></span>
+          </div>
+          <div>
+            <span class="icon">⏰</span>
+            <span id="time"></span>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </header>
+  <main>
+    <div>
+       <!-- Multiple Color Boxes with Headings -->
+      <div class="color-boxes-container">
+        <div class="color-box" id="box1">
+          <h3>Load</h3>
+          <div class="fill" id="color-fill-1"></div>
+          <div class="content">
+            <span id="filled-value-1">658</span> <!-- Displaying only the filled value -->
+          </div>
+        </div>
+        <div class="color-box" id="box2">
+          <h3>Main Steam Flow</h3>
+          <div class="fill" id="color-fill-2"></div>
+          <div class="content">
+            <span id="filled-value-2">1931</span> <!-- Displaying only the filled value -->
+          </div>
+        </div>
+        <div class="color-box" id="box3">
+          <h3>Hotwell Temperature</h3>
+          <div class="fill" id="color-fill-3"></div>
+          <div class="content">
+            <span id="filled-value-3">44.6</span> <!-- Displaying only the filled value -->
+          </div>
+        </div>
+        <div class="color-box" id="box4">
+          <h3>Condenser Vacuum</h3>
+          <div class="fill" id="color-fill-4"></div>
+          <div class="content">
+            <span id="filled-value-4">-89.2</span> <!-- Displaying only the filled value -->
+          </div>
+        </div>
+      </div>
+      <div id="body-container">
+        <div id="main-container">
+          <div id="chart-container">
+            <div id="small-chart-1" class="small-chart"></div>
+            <!-- <br> -->
+            <div id="small-chart-2" class="small-chart"></div>
+            <div id="small-chart-3" class="small-chart"></div>
+          </div>
+      
+          <div id="chart-container2">
+            <!-- Small Chart Container -->
+      
+            <!-- Large Chart Container -->
+            <div id="large-chart-container" class="large-chart">
+              <div id="large-line-chart"></div>
+            </div>
+            <br>
+          </div>
+        </div>
+        <div class="recommendations-container">
+          <h3>Fault Diagnosis</h3>
+          <div class="scroll-box" id="recommendations"></div>
+          <!-- Dynamic content will be injected here -->
+        </div>
+      </div>
+      <div class="confirmation-popup" id="popup" style="display: none;">
+        <div class="popup-content">
+          <h4 id="popup-title"></h4>
+          <p id="popup-message"></p>
+          <button class="ok-btn" onclick="closePopup()">OK</button>
+        </div>
+      </div>
+      
+      
+      <a href="generator/report.html" class="report-button" target="_blank">Report Generator</a>
+      <a href="feedback/feedback.html" class="feedback-button" target="_blank">Feedback</a>
+      
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2024 APL Tiroda (Team Optimus). All rights reserved.
+  </footer>
+  <script src="script.js"></script>
+  <script src="weather.js"></script> <!-- Link to the weather.js file -->
+</body>
+</html>

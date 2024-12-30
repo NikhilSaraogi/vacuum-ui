@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive Report Viewer</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Report Options</h2>
+        <button onclick="showSection('diagnostic')">Diagnostic Report</button>
+        <button onclick="showSection('benefit')">Benefit Evaluation</button>
+    </div>
+
+    <div class="content">
+        <!-- Diagnostic Report Section -->
+        <div id="diagnostic" class="report-section active">
+            <h1>Diagnostic Viewer</h1>
+            <div class="filters">
+                <label for="dateRange">Select Date Range:</label>
+                <input type="date" id="startDate">
+                <input type="date" id="endDate">
+                <button onclick="fetchDataByDate()">Apply</button>
+            </div>
+
+            <div class="predefined-filters">
+                <button onclick="fetchDataByTime('day')">Day</button>
+                <button onclick="fetchDataByTime('week')">Week</button>
+                <button onclick="fetchDataByTime('month')">Month</button>
+                <button onclick="fetchDataByTime('quarter')">Quarter</button>
+            </div>
+
+            <table id="dataTable">
+                <thead>
+                    <tr>
+                        <th>Recommendation Time</th>
+                        <th>Issue</th>
+                        <th>Observed Value</th>
+                        <th>Expected Range</th>
+                        <th>Root Cause</th>
+                        <th>Comment</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data rows will be inserted here -->
+                </tbody>
+            </table>
+
+            <div class="buttons">
+                <button id="downloadBtn" onclick="downloadCSV()">Download CSV</button>
+                <button id="downloadPdfBtn" onclick="downloadPDF()">Download PDF</button>
+            </div>
+        </div>
+
+        <!-- Benefit Evaluation Section -->
+        <div id="benefit" class="report-section">
+            <h1>Vacuum Performance and Energy Savings</h1>
+            <p>Improving Vacuum Levels for Energy Optimization</p>
+            <p><strong>Date:</strong> <span id="current-date"></span></p>
+
+            <div id="timeframe-selector">
+                <label for="start-date">Start Date:</label>
+                <input type="date" id="start-date">
+                <label for="end-date">End Date:</label>
+                <input type="date" id="end-date">
+                <button id="update-report">Show Report</button>
+            </div>
+
+            <div class="report-summary">
+                <div class="table-container">
+                    <h3>Summary of Energy Savings</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Metric</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Total Energy Savings</td>
+                                <td id="total-kcal">0 kCal</td>
+                            </tr>
+                            <tr>
+                                <td>Total Monetary Savings</td>
+                                <td id="total-rs">₹0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="chart-container">
+                    <h3>Vacuum Performance</h3>
+                    <canvas id="vacuumChart" width="400" height="200"></canvas>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <h3>Data Summary</h3>
+                <table id="benefit-data-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Vacuum Levels (KPA)</th>
+                            <th>Energy Savings (kCal)</th>
+                            <th>Monetary Savings (₹)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data rows will be dynamically inserted -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="download-report">
+                <button id="generate-report">Generate Report</button>
+                <button id="download-pdf" disabled>Download Report as PDF</button>
+            </div>
+            
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.report-section');
+            sections.forEach(section => section.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+        }
+    </script>
+    <script src="script.js"></script>
+
+</body>
+</html>
